@@ -1,0 +1,12 @@
+ 
+# Ignore compiled files
+/target/
+*.class
+
+# Ignore config files with sensitive data
+application.properties
+application.yml
+
+# Ignore database files
+*.db
+*.sql

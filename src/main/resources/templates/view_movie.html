@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <title>Movie Details</title>
+    <style>
+        body{
+            /*font-family: "Sofia", sans-serif;*/
+
+            /*font-family: 'Bacasime Antique', serif;*/
+            /*font-size: 20px;*/
+
+
+            font-family: 'PT Sans', sans-serif;
+
+
+            /*font-family: 'Heebo', sans-serif;*/
+        }
+        h2{
+            color: #0000CD;
+            text-align: center;
+        }
+        .card {
+            position: relative;
+            overflow: hidden;
+            width: 500px;
+            height: 620px;
+            background-color: purple;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            /*float: left;*/
+            margin-left: 170px;
+
+
+
+        }
+
+        .card-img-container {
+            position: relative;
+            height: 0;
+            /*padding-top: 150%;*/
+        }
+
+        .card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 620px;
+            object-fit: cover;
+        }
+
+        .card-img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .card-title,
+        .card-text {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .col {
+            background-color: #ffffff;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            float: right;
+            width: 500px;
+            height: 570px;
+            margin-left: 50px;
+            margin-top: 70px;
+        }
+
+
+        .col-4 {
+            display: flex;
+            align-items: center;
+        }
+
+        .col-8 {
+            background-color: #ffffff;
+            padding: 1rem;
+            width: 400px;
+            /*float: right;*/
+            margin-right: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .mt-3 {
+            margin-top: 1.5rem;
+        }
+
+        .get-button {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .row{
+            display: flex;
+            flex: 2;
+            margin: 10px;
+        }
+
+        .row1{
+            margin: 0;
+        }
+
+        .get-button:hover {
+            background-color: purple;
+        }
+
+
+
+          .add-button {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+              float: right;
+        }
+        .get-button {
+            background-color: #D733FF;
+        }
+        .edit-button {
+            background-color: #3498DB ;
+        }
+
+        .delete-button {
+            background-color: #52BE80;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="row1">
+            <h2><b th:text="${movie.get().name}"></b></h2>
+            <!--        <div class="col-8">-->
+            <div class="card bg-dark text-white">
+                <div class="card-img-container">
+                    <img th:src="${movie.get().media}" th:alt="${movie.get().name}" class="card-img" width="60%" height="60%">
+                </div>
+                <div class="card-img-overlay" style="color: #000000;">
+                    <h5 class="card-title">
+                        <b th:text="${movie.get().name}"></b> |
+                        <small th:text="${movie.get().languageOption}"></small>
+                    </h5>
+                    <p class="card-text">
+                        <span th:text="${movie.get().releaseYear}"></span> - <b th:text="${movie.get().genre}"></b>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <b>Date of publication :</b> <span th:text="${movie.get().releaseYear}"></span><br>
+            <b>Type :</b> <span th:text="${movie.get().genre}"></span><br>
+            <b>Language :</b> <span th:text="${movie.get().languageOption}"></span><br>
+            <hr>
+            <b>Players :</b>
+            <span th:text="${movie.get().nameOfActors}">
+                    </span><br><br>
+            <span th:text="${movie.get().description}"></span><br><br><br><br><br>
+            <td>
+                <a th:href="@{/movies/showFormForUpdate/{id}(id=${id})}" class="add-button edit-button">Edit</a>
+                <br><br>
+                <a th:href="@{/movies/deleteMovie/{id}(id=${id})}" class="add-button delete-button">Delete</a>
+                <br><br>
+            </td>
+            <a th:href="@{/movies/home}">
+                <button type="button" class="add-button get-button">List of movies</button>
+            </a>
+        </div>
+    </div>
+
+<!--        </div>-->
+    </div>
+    <div class="row mt-3">
+<!--        <div class="col-8">-->
+<!--            <br><br>-->
+<!--            <span th:text="${movie.get().description}"></span>-->
+<!--        </div>-->
+<!--        <div class="col-4 d-grid gap-2">-->
+<!--            <a th:href="@{/movies/home}">-->
+<!--                <button type="button" class="add-button get-button">Go back to the list of movies</button>-->
+<!--            </a>-->
+<!--        </div>-->
+    </div>
+</div>
+</body>
+</html>
+

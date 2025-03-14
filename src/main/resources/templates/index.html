@@ -1,0 +1,305 @@
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="ISO-8859-1">-->
+<!--  <title>Movie System</title>-->
+
+<!--  <link rel="stylesheet"-->
+<!--        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"-->
+<!--        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"-->
+<!--        crossorigin="anonymous">-->
+
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container my-2">-->
+<!--  <h1>Movies List</h1>-->
+
+<!--  <a th:href = "@{/movies/showNewMovieForm}"  class="btn btn-primary btn-sm mb-3"> Add Movie </a>-->
+
+<!--  <table border="1" class = "table table-striped table-responsive-md">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>-->
+
+
+<!--      <a th:href="@{'/page/' + ${currentPage} + '?sortField=description&sortDir=' + ${reverseSortDir}}">-->
+<!--         Movie description </a>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <a th:href="@{'/page/' + ${currentPage} + '?sortField=genre&sortDir=' + ${reverseSortDir}}">-->
+<!--          Movie genre</a>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <a th:href="@{'/page/' + ${currentPage} + '?sortField=languageOption&sortDir=' + ${reverseSortDir}}">-->
+<!--          Language option</a>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <a th:href="@{'/page/' + ${currentPage} + '?sortField=media&sortDir=' + ${reverseSortDir}}">-->
+<!--          Movie media</a>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <a th:href="@{'/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">-->
+<!--          Movie name</a>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <a th:href="@{'/page/' + ${currentPage} + '?sortField=nameOfActors&sortDir=' + ${reverseSortDir}}">-->
+<!--          Name of Actors</a>-->
+<!--      </th><th>-->
+<!--      <a th:href="@{'/page/' + ${currentPage} + '?sortField=releaseYear&sortDir=' + ${reverseSortDir}}">-->
+<!--        Release Year </a>-->
+<!--    </th>-->
+
+<!--      <th> Actions </th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="movie : ${listMovies}">-->
+
+<!--      <td th:text="${movie.description}"></td>-->
+<!--      <td th:text="${movie.genre}"></td>-->
+<!--      <td th:text="${movie.languageOption}"></td>-->
+<!--      <td th:text="${movie.media}"></td>-->
+<!--      <td th:text="${movie.name}"></td>-->
+<!--      <td th:text="${movie.nameOfActors}"></td>-->
+<!--      <td th:text="${movie.releaseYear}"></td>-->
+
+<!--      <td> <a th:href="@{/movies/showFormForUpdate/{id}(id=${movie.id})}" class="btn btn-primary">Update</a>-->
+<!--        <a th:href="@{/movies/deleteMovie/{id}(id=${movie.id})}" class="btn btn-danger">Delete</a>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+<!--  <div th:if = "${totalPages > 1}">-->
+<!--    <div class = "row col-sm-10">-->
+<!--      <div class = "col-sm-2">-->
+<!--        Total Rows: [[${totalItems}]]-->
+<!--      </div>-->
+<!--      <div class = "col-sm-1">-->
+<!--					<span th:each="i: ${#numbers.sequence(1, totalPages)}">-->
+<!--						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>-->
+<!--						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;-->
+<!--					</span>-->
+<!--      </div>-->
+<!--      <div class = "col-sm-1">-->
+<!--        <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>-->
+<!--        <span th:unless="${currentPage < totalPages}">Next</span>-->
+<!--      </div>-->
+
+<!--      <div class="col-sm-1">-->
+<!--        <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>-->
+<!--        <span th:unless="${currentPage < totalPages}">Last</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<html>-->
+<!--<head>-->
+<!--  <title>List of Movies</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>List of Movies</h1>-->
+
+<!--<a href="/movies/showNewMovieForm">Add New Movie</a>-->
+<!--<table>-->
+<!--  <tr>-->
+<!--    <th>Name</th>-->
+<!--    <th>Genre</th>-->
+<!--    <th>Language Option</th>-->
+<!--    <th>Description</th>-->
+<!--    <th>Name of Actors</th>-->
+<!--    <th>Media</th>-->
+<!--    <th>Release Year</th>-->
+
+
+
+<!--    <th>Action</th>-->
+<!--  </tr>-->
+<!--  &lt;!&ndash; Loop through the movies and display each movie &ndash;&gt;-->
+<!--  <th:block th:each="movie : ${listMovies}">-->
+<!--    <tr>-->
+<!--      <td th:text="${movie.name}"></td>-->
+<!--      <td th:text="${movie.genre}"></td>-->
+<!--      <td th:text="${movie.languageOption}"></td>-->
+<!--      <td th:text="${movie.description}"></td>-->
+<!--      <td th:text="${movie.nameOfActors}"></td>-->
+<!--      <td th:text="${movie.media}"></td>-->
+<!--      <td th:text="${movie.releaseYear}"></td>-->
+<!--      <td>-->
+<!--        <a th:href="@{/movies/showFormForUpdate/{id}(id=${movie.id})}">Edit</a>-->
+<!--        <a th:href="@{/movies/deleteMovie/{id}(id=${movie.id})}">Delete</a>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </th:block>-->
+<!--</table>-->
+<!--<br>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head><link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+  <title>List of Movies</title>
+  <style>
+    body {
+      /*font-family: Arial, sans-serif;*/
+      background-color: #F5F5F5;
+      padding: 20px;
+      position: absolute;
+      font-family: 'PT Sans', sans-serif;
+    }
+
+    h1 {
+      color: #333333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #CCCCCC;
+    }
+
+    th {
+      background-color: #EEEEEE;
+    }
+
+    .add-button {
+      margin-top: 20px;
+    }
+
+
+    .my-search-input {
+      /* Add your desired styles for the search input field */
+      width: 90%; /* Make the input field occupy 100% of the container width */
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 4px;
+      /* Add more styles as needed */
+    }
+
+    .my-search-button {
+      /* Add your desired styles for the search button */
+      background-color: mediumpurple;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+      /* Add more styles as needed */
+    }
+
+    .add-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 4px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    .edit-button {
+      background-color: #3498DB ;
+    }
+
+    .delete-button {
+      background-color: #52BE80;
+    }
+    .new-button {
+      background-color: #33FFF3;
+    }
+    .get-button {
+      background-color: #D733FF;
+    }
+
+    .add-button:hover {
+      transform: scale(1.1);
+    }
+
+
+
+  </style>
+  <!-- Include the DataTables CSS отвечает за оформление таблицы и ее компонентов. -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+
+  <!-- Include jQuery содержит библиотеку jQuery. Функциональность DataTables зависит от jQuery, поэтому она должна быть включена перед DataTables. -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Include the DataTables JS  . После этого включается JS-файл DataTables. Этот файл содержит основной код библиотеки DataTables, который позволяет выполнять сортировку, поиск и другие функции таблиц.-->
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Initialize DataTable
+      $('#movieTable').DataTable();
+    });
+  </script>
+</head>
+<body>
+<h1>List of Movies</h1>
+
+<form th:action="@{/movies/film}" method="get">
+  <div class="input-group mb-3">
+    <input id="txtSearch" type="text" name="keyword" class="form-control my-search-input" placeholder="Search by movie name">
+    <button type="submit" class="add-button get-button">Get</button>
+  </div>
+</form>
+
+<a href="/movies/showNewMovieForm" class="add-button new-button">Add New Movie</a>
+
+<table id="movieTable">
+  <thead>
+  <tr>
+    <th>Media</th>
+    <th>Name</th>
+    <th>Genre</th>
+    <th>Language</th>
+    <th>Description</th>
+    <th>Name of Actors</th>
+    <th>Release Year</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:each="movie : ${listMovies}">
+    <tr>
+      <td>
+        <a th:href="${movie.media}" target="_blank" rel="noopener noreferrer">
+          <img th:src="${movie.media}" th:alt="${movie.media}" width="120" height="150" />
+        </a>
+      </td>
+
+      <td ><a th:href="@{'/movies/view/' + ${movie.id}}" style="text-decoration: none; color: #000000;"><b th:text="${movie.name}"></b></a></td>
+      <td th:text="${movie.genre}"></td>
+      <td th:text="${movie.languageOption}"></td>
+      <td th:text="${movie.description}"></td>
+      <td th:text="${movie.nameOfActors}"></td>
+      <td th:text="${movie.releaseYear}"></td>
+      <td>
+        <a th:href="@{/movies/showFormForUpdate/{id}(id=${movie.id})}" class="add-button edit-button">Edit</a>
+        <a th:href="@{/movies/deleteMovie/{id}(id=${movie.id})}" class="add-button delete-button">Delete</a>
+      </td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+</body>
+</html>
+
+

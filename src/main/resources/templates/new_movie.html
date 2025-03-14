@@ -1,0 +1,330 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--  <meta charset="ISO-8859-1">-->
+<!--  <title>Movie System</title>-->
+<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<div class="container">-->
+<!--  <h1>Movie System</h1>-->
+<!--  <hr>-->
+<!--  <h2>Save Movie</h2>-->
+
+
+<!--  <form action="#" th:action="@{/movies/saveMovie}" th:object="${movie}" method="POST">-->
+<!--    <input type="text" th:field="${movie.description}" placeholder="Movie description" class="form-control mb-4 col-4">-->
+
+<!--    <input type="text" th:field="${movie.genre}" placeholder="Genre of movie" class="form-control mb-4 col-4">-->
+
+<!--    <input type="text" th:field="${movie.languageOption}" placeholder="Language option" class="form-control mb-4 col-4">-->
+
+<!--    <input type="text" th:field="${movie.media}" placeholder="Movie media" class="form-control mb-4 col-4">-->
+
+<!--    <input type="text" th:field="${movie.name}" placeholder="Movie name" class="form-control mb-4 col-4">-->
+
+<!--    <input type="text" th:field="${movie.nameOfActors}" placeholder="Name of Actors" class="form-control mb-4 col-4">-->
+
+<!--    <input type="number" th:field="${movie.releaseYear}" placeholder="Movie release year" class="form-control mb-4 col-4">-->
+
+<!--    <button type="submit" class="btn btn-info col-2"> Save Movie</button>-->
+<!--  </form>-->
+
+<!--  <hr>-->
+
+<!--  <a th:href="@{/movies}"> Back to Movie List</a>-->
+<!--</div>-->
+<!--</body>-->
+
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--  <title>Add New Movie</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Add New Movie</h1>-->
+<!--<form action="/movies/saveMovie" method="post">-->
+<!--  <label for="title">Title:</label>-->
+<!--  <input type="text" id="title" name="title">-->
+<!--  <br>-->
+<!--  <label for="genre">Genre:</label>-->
+<!--  <input type="text" id="genre" name="genre">-->
+<!--  <br>-->
+<!--  <label for="languageOption">Language Option:</label>-->
+<!--  <input type="text" id="languageOption" name="languageOption">-->
+<!--  <br>-->
+<!--  <label for="description">Description:</label>-->
+<!--  <input type="text" id="description" name="description">-->
+<!--  <br>-->
+<!--  <label for="nameOfActors">Name of Actors:</label>-->
+<!--  <input type="text" id="nameOfActors" name="nameOfActors">-->
+<!--  <br>-->
+<!--  <label for="media">Media:</label>-->
+<!--  <input type="text" id="media" name="media">-->
+<!--  <br>-->
+<!--  <label for="releaseYear">Release Year:</label>-->
+<!--  <input type="text" id="releaseYear" name="releaseYear">-->
+<!--  <br>-->
+<!--  <input type="submit" value="Add">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add New Movie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .movie-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      animation: fade-in 0.5s ease-in-out;
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #555;
+      animation: slide-left 0.5s ease-in-out;
+    }
+
+    @keyframes slide-left {
+      0% {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 14px;
+      margin-bottom: 20px;
+      animation: slide-up 0.5s ease-in-out;
+    }
+
+    @keyframes slide-up {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    input[type="submit"] {
+      background-color: purple;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      animation: scale-in 0.5s ease-in-out;
+    }
+
+    @keyframes scale-in {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    input[type="submit"]:hover {
+      background-color: #33FFF3;
+      animation: pulse 0.3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      margin-bottom: 5px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .genre-select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 14px;
+      margin-bottom: 20px;
+      background-color: #fff;
+      color: #555;
+      animation: slide-up 0.5s ease-in-out;
+    }
+
+    .form-row {
+      display: flex;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .form-row label {
+      margin-right: 10px;
+      animation: slide-left 0.5s ease-in-out;
+    }
+
+    @media screen and (max-width: 500px) {
+      .movie-form {
+        padding: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .movie-form,
+      label,
+      input[type="text"],
+      textarea,
+      input[type="submit"] {
+        animation: none;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+<h1>Add New Movie</h1>
+<form action="/movies/saveMovie" method="post" class="movie-form">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="name" size="50" required>
+  </div>
+  <div class="form-group">
+    <label for="genre">Genre:</label>
+    <input type="text" id="genre" name="genre">
+  </div>
+  <div class="form-group">
+    <label for="languageOption">Language Option:</label>
+    <input type="text" id="languageOption" name="languageOption">
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="6"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="nameOfActors">Name of Actors:</label>
+    <input type="text" id="nameOfActors" name="nameOfActors">
+  </div>
+  <div class="form-group">
+    <label for="media">Media URL:</label>
+    <input type="text" id="media" name="media" required>
+  </div>
+  <div class="form-group">
+    <label for="releaseYear">Release Year:</label>
+    <input type="number" id="releaseYear" name="releaseYear" min="1899" max="2023">
+    <script>
+      document.querySelector("input[type=number]")
+              .oninput = e => console.log(new Date(e.target.valueAsNumber, 0, 1))
+    </script>
+  </div>
+  <input type="submit" value="Add">
+</form>
+</body>
+
+<!--<body>-->
+<!--<h1>Add New Movie</h1>-->
+<!--<form action="/movies/saveMovie" method="post">-->
+<!--  <label for="title">Title:</label>-->
+<!--  <input type="text" id="title" name="title">-->
+<!--  <br>-->
+<!--  <label for="genre">Genre:</label>-->
+<!--  <input type="text" id="genre" name="genre">-->
+<!--  <br>-->
+<!--  <label for="languageOption">Language Option:</label>-->
+<!--  <input type="text" id="languageOption" name="languageOption">-->
+<!--  <br>-->
+<!--  <label for="description">Description:</label>-->
+<!--  <textarea id="description" name="description" rows="6"></textarea>-->
+<!--  <br>-->
+<!--  <label for="nameOfActors">Name of Actors:</label>-->
+<!--  <input type="text" id="nameOfActors" name="nameOfActors">-->
+<!--  <br>-->
+<!--  <label for="media">Media URL:</label>-->
+<!--  <input type="text" id="media" name="media">-->
+<!--  <br>-->
+<!--  <label for="releaseYear">Release Year:</label>-->
+<!--  <input type="text" id="releaseYear" name="releaseYear">-->
+<!--  <br>-->
+<!--  <input type="submit" value="Add">-->
+<!--</form>-->
+<!--</body>-->
+</html>
+
+
+
