@@ -1,4 +1,4 @@
-🎬 Movie REST API (Spring Boot + PostgreSQL)
+#🎬 Movie REST API (Spring Boot + PostgreSQL)
 This project is a full-stack Movie Management System built with Spring Boot and PostgreSQL. It includes a RESTful API for managing movie data, and a front-end UI that supports search, pagination, sorting, and CRUD operations.
 
 📸 Screenshots
@@ -19,7 +19,7 @@ Add a new movie with title, genre, description, actors, and release year.
 
 Edit existing movie information.
 
-🧰 Technologies Used
+#🧰 Technologies Used
 Backend: Java, Spring Boot (Spring Data JPA, Spring Web)
 
 Database: PostgreSQL
